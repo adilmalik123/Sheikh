@@ -41,7 +41,7 @@ const ShaheenLogo = ({ compact = false }) => {
 };
 
 const HusnETurkLogo = ({ compact = false }) => {
-  const wrapperClass = getLogoClass(compact);
+  const wrapperClass = compact ? 'h-14 w-auto max-w-[190px] object-contain' : 'h-24 w-auto max-w-[340px] object-contain';
 
   return (
     <img src={husnETurkLogo} alt="Husn-e-Turk logo" className={wrapperClass} />
@@ -65,7 +65,7 @@ const TaryakLogo = ({ compact = false }) => {
 };
 
 const LibnaniLogo = ({ compact = false }) => {
-  const wrapperClass = getLogoClass(compact);
+  const wrapperClass = compact ? 'h-10 w-auto max-w-[150px] object-contain' : 'h-16 w-auto max-w-[240px] object-contain';
 
   return (
     <img src={libnaniLogo} alt="Libnani logo" className={wrapperClass} />
