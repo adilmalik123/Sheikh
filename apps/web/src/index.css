@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Manrope", sans-serif;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at top left, rgba(244, 190, 213, 0.18), transparent 22%),
+    radial-gradient(circle at top right, rgba(122, 44, 142, 0.08), transparent 16%),
+    linear-gradient(180deg, #fff8fa 0%, #fffefa 100%);
+  color: hsl(var(--foreground));
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: "Cormorant Garamond", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html[data-language="ur"] body,
+html[lang="ur"] body {
+  font-family: "Noto Naskh Arabic", "Noto Sans Arabic", "Segoe UI", sans-serif;
+  line-height: 1.85;
+}
+
+html[data-language="ar"] body,
+html[lang="ar"] body {
+  font-family: "Amiri", "Noto Sans Arabic", "Segoe UI", sans-serif;
+  line-height: 1.85;
+}
+
+html[data-language="fa"] body,
+html[lang="fa"] body {
+  font-family: "Vazirmatn", "Noto Sans Arabic", "Segoe UI", sans-serif;
+  line-height: 1.85;
+}
+
+html[data-language="ur"] h1,
+html[data-language="ur"] h2,
+html[data-language="ur"] h3,
+html[data-language="ur"] h4,
+html[data-language="ur"] h5,
+html[data-language="ur"] h6,
+html[data-language="ur"] .font-serif,
+html[lang="ur"] h1,
+html[lang="ur"] h2,
+html[lang="ur"] h3,
+html[lang="ur"] h4,
+html[lang="ur"] h5,
+html[lang="ur"] h6,
+html[lang="ur"] .font-serif {
+  font-family: "Noto Naskh Arabic", "Noto Sans Arabic", "Segoe UI", sans-serif;
+}
+
+html[data-language="ar"] h1,
+html[data-language="ar"] h2,
+html[data-language="ar"] h3,
+html[data-language="ar"] h4,
+html[data-language="ar"] h5,
+html[data-language="ar"] h6,
+html[data-language="ar"] .font-serif,
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[lang="ar"] h5,
+html[lang="ar"] h6,
+html[lang="ar"] .font-serif {
+  font-family: "Amiri", "Noto Sans Arabic", "Segoe UI", sans-serif;
+}
+
+html[data-language="fa"] h1,
+html[data-language="fa"] h2,
+html[data-language="fa"] h3,
+html[data-language="fa"] h4,
+html[data-language="fa"] h5,
+html[data-language="fa"] h6,
+html[data-language="fa"] .font-serif,
+html[lang="fa"] h1,
+html[lang="fa"] h2,
+html[lang="fa"] h3,
+html[lang="fa"] h4,
+html[lang="fa"] h5,
+html[lang="fa"] h6,
+html[lang="fa"] .font-serif {
+  font-family: "Vazirmatn", "Noto Sans Arabic", "Segoe UI", sans-serif;
+}
+
+@layer base {
+  :root {
+    --primary: 43 86% 63%;
+    --primary-foreground: 282 46% 18%;
+    --secondary: 334 68% 66%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 284 48% 36%;
+    --accent-foreground: 0 0% 100%;
+    --background: 24 100% 99%;
+    --foreground: 293 34% 16%;
+    --muted: 26 78% 95%;
+    --muted-foreground: 305 14% 42%;
+    --card: 0 0% 100%;
+    --card-foreground: 293 34% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 293 34% 16%;
+    --border: 330 39% 89%;
+    --input: 24 48% 95%;
+    --ring: 43 86% 63%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .luxury-card {
+    @apply rounded-[1.9rem] border border-white/70 bg-[rgba(255,255,255,0.78)] backdrop-blur;
+    box-shadow: 0 28px 90px -52px rgba(107, 44, 145, 0.9);
+  }
+
+  .marquee-track {
+    animation: marquee 28s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
