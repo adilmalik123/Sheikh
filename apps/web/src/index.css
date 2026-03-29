@@ -4,14 +4,49 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Manrope", sans-serif;
-  overflow-x: clip;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(244, 190, 213, 0.18), transparent 22%),
     radial-gradient(circle at top right, rgba(122, 44, 142, 0.08), transparent 16%),
     linear-gradient(180deg, #fff8fa 0%, #fffefa 100%);
   color: hsl(var(--foreground));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+a,
+button {
+  overflow-wrap: anywhere;
 }
 
 h1, h2, h3, h4, h5, h6, .font-serif {

@@ -72,7 +72,7 @@ const ProductsPage = () => {
                       </button>
                     ))}
                   </div>
-                  <div className="relative min-w-[280px]">
+                  <div className="relative w-full sm:min-w-[280px]">
                     <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <Input placeholder={copy.products.search} value={search} onChange={(event) => setSearch(event.target.value)} className="rounded-full border-[#ead6df] bg-white pl-9 focus-visible:ring-[#d4a454]" />
                   </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Logo = ({ className = 'h-10' }) => {
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div className={`flex min-w-0 items-center gap-2 sm:gap-3 ${className}`}>
       <svg viewBox="0 0 120 120" className="h-full w-auto drop-shadow-[0_14px_30px_rgba(62,18,74,0.28)]" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="60" cy="60" r="54" fill="url(#luxuryCore)" />
         <circle cx="60" cy="60" r="48" stroke="url(#luxuryRing)" strokeWidth="1.8" />
@@ -28,9 +28,9 @@ const Logo = ({ className = 'h-10' }) => {
           </linearGradient>
         </defs>
       </svg>
-      <div className="flex flex-col justify-center">
-        <span className="font-serif text-xl font-semibold leading-none tracking-[0.26em] text-white sm:text-2xl">SHEIKH</span>
-        <span className="mt-1 text-[0.65rem] font-semibold uppercase leading-none tracking-[0.38em] text-[#f2c76d]">Cosmetics</span>
+      <div className="flex min-w-0 flex-col justify-center">
+        <span className="font-serif text-lg font-semibold leading-none tracking-[0.16em] text-white sm:text-2xl sm:tracking-[0.26em]">SHEIKH</span>
+        <span className="mt-1 text-[0.58rem] font-semibold uppercase leading-none tracking-[0.22em] text-[#f2c76d] sm:text-[0.65rem] sm:tracking-[0.38em]">Cosmetics</span>
       </div>
     </div>
   );

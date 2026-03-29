@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, Award, Factory, Globe2, PackageCheck, PlayCircle, Sparkles, Star, WandSparkles } from 'lucide-react';
+import { ArrowRight, Award, ChevronLeft, ChevronRight, Factory, Globe2, Maximize, PackageCheck, PlayCircle, Sparkles, Star, Volume2, VolumeX, WandSparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Footer from '@/components/Footer.jsx';
 import BrandMark, { AlmasLogo, ArmanLogo, BeautyloopLogo, HijabLogo, HusnETurkLogo, LibnaniLogo, ShaheenLogo, TaryakLogo } from '@/components/BrandMark.jsx';
@@ -16,20 +16,124 @@ import { useLanguage } from '@/context/LanguageContext';
 const HomePage = () => {
   const { copy, language } = useLanguage();
   const [activeSlide, setActiveSlide] = useState(0);
+  const [slideDirection, setSlideDirection] = useState(1);
   const catalogText = getCatalogText(language);
   const products = useMemo(() => getCatalogProducts(language), [language]);
   const featuredProducts = products.slice(0, 6);
   const videoHighlights = videos.slice(0, 3);
+  const currentSlide = homepageSlides[activeSlide];
+  const touchStartXRef = useRef(null);
+  const sliderMediaRef = useRef(null);
+  const [videoSoundEnabled, setVideoSoundEnabled] = useState(true);
+
+  const goToPrevSlide = () => {
+    setSlideDirection(-1);
+    setActiveSlide((current) => (current - 1 + homepageSlides.length) % homepageSlides.length);
+  };
+
+  const goToNextSlide = () => {
+    setSlideDirection(1);
+    setActiveSlide((current) => (current + 1) % homepageSlides.length);
+  };
+
+  const goToSlide = (index) => {
+    if (index === activeSlide) {
+      return;
+    }
+
+    setSlideDirection(index > activeSlide ? 1 : -1);
+    setActiveSlide(index);
+  };
+
+  const handleSliderTouchStart = (event) => {
+    touchStartXRef.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleSliderTouchEnd = (event) => {
+    if (touchStartXRef.current == null) {
+      return;
+    }
+
+    const endX = event.changedTouches[0]?.clientX ?? touchStartXRef.current;
+    const deltaX = endX - touchStartXRef.current;
+    touchStartXRef.current = null;
+
+    if (Math.abs(deltaX) < 40) {
+      return;
+    }
+
+    if (deltaX > 0) {
+      goToPrevSlide();
+      return;
+    }
+
+    goToNextSlide();
+  };
+
+  const handleFullscreen = async () => {
+    const sliderElement = sliderMediaRef.current;
+
+    if (!sliderElement) {
+      return;
+    }
+
+    if (document.fullscreenElement) {
+      await document.exitFullscreen?.();
+      return;
+    }
+
+    if (sliderElement.requestFullscreen) {
+      await sliderElement.requestFullscreen();
+      return;
+    }
+
+    if (sliderElement.webkitRequestFullscreen) {
+      sliderElement.webkitRequestFullscreen();
+    }
+  };
+
+  const getAutoplayEmbedUrl = (embedUrl) => {
+    if (!embedUrl) return embedUrl;
+
+    if (embedUrl.includes('youtube-nocookie.com/embed/')) {
+      return embedUrl.includes('?')
+        ? `${embedUrl}&autoplay=1&mute=${videoSoundEnabled ? 0 : 1}&playsinline=1&rel=0&controls=1&fs=1&modestbranding=1`
+        : `${embedUrl}?autoplay=1&mute=${videoSoundEnabled ? 0 : 1}&playsinline=1&rel=0&controls=1&fs=1&modestbranding=1`;
+    }
+
+    if (embedUrl.includes('facebook.com/plugins/video.php')) {
+      return embedUrl.includes('?')
+        ? `${embedUrl}&autoplay=1&mute=${videoSoundEnabled ? 0 : 1}`
+        : `${embedUrl}?autoplay=1&mute=${videoSoundEnabled ? 0 : 1}`;
+    }
+
+    return embedUrl;
+  };
 
   useEffect(() => {
     const timer = window.setInterval(() => {
+      setSlideDirection(1);
       setActiveSlide((current) => (current + 1) % homepageSlides.length);
     }, 5000);
 
     return () => window.clearInterval(timer);
   }, []);
 
-  const currentSlide = homepageSlides[activeSlide];
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 1,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction) => ({
+      x: direction > 0 ? '-100%' : '100%',
+      opacity: 1,
+    }),
+  };
+
   const expertiseCards = [
     { icon: Factory, title: copy.home.sections.expertise, items: copy.lists.expertise },
     { icon: Star, title: copy.home.sections.ingredients, items: copy.lists.ingredients },
@@ -48,26 +152,26 @@ const HomePage = () => {
           <section className="relative overflow-hidden px-4 pb-14 pt-36 sm:px-6 lg:px-8">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,190,213,0.36),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(111,44,145,0.18),transparent_18%),linear-gradient(145deg,#fff8fb_0%,#fff2f8_40%,#fff9f2_100%)]" />
             <div className="container relative mx-auto grid gap-8 xl:grid-cols-[1.08fr_0.92fr]">
-              <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }} className="rounded-[2rem] border border-white/65 bg-white/70 p-8 shadow-[0_30px_100px_-48px_rgba(107,44,145,0.8)] backdrop-blur xl:p-12">
+              <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }} className="order-2 rounded-[2rem] border border-white/65 bg-white/70 p-8 shadow-[0_30px_100px_-48px_rgba(107,44,145,0.8)] backdrop-blur xl:order-1 xl:p-12">
                 <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#f1d7e6] bg-[#fff7fb] px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#9e2b86]">
                   <Sparkles className="h-4 w-4" />
                   {copy.home.badge}
                 </p>
-                <h1 className="font-serif text-5xl font-semibold leading-tight text-[#2f1538] md:text-7xl">
+                <h1 className="font-serif text-4xl font-semibold leading-tight text-[#2f1538] sm:text-5xl md:text-7xl">
                   {copy.home.title}
                 </h1>
                 <p className="mt-7 max-w-2xl text-lg leading-8 text-[#654a68]">{copy.home.subtitle}</p>
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <Link to="/products">
-                    <Button className="rounded-full bg-gradient-to-r from-[#b22e85] via-[#813091] to-[#42205f] px-7 py-6 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_22px_44px_-20px_rgba(178,46,133,0.7)] hover:brightness-110">
+                  <Button asChild className="rounded-full bg-gradient-to-r from-[#b22e85] via-[#813091] to-[#42205f] px-7 py-6 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_22px_44px_-20px_rgba(178,46,133,0.7)] hover:brightness-110">
+                    <Link to="/products">
                       {copy.common.exploreProducts}
-                    </Button>
-                  </Link>
-                  <Link to="/private-label">
-                    <Button variant="outline" className="rounded-full border-[#d4a454] px-7 py-6 text-sm font-semibold uppercase tracking-[0.18em] text-[#7a2c8e] hover:bg-[#fff4db]">
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" className="rounded-full border-[#d4a454] px-7 py-6 text-sm font-semibold uppercase tracking-[0.18em] text-[#7a2c8e] hover:bg-[#fff4db]">
+                    <Link to="/private-label">
                       {copy.common.privateLabel}
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </div>
                 <div className="mt-10 grid gap-4 md:grid-cols-3">
                   {catalogText.portfolioMetrics.map((metric) => (
@@ -79,53 +183,96 @@ const HomePage = () => {
                 </div>
               </motion.div>
 
-              <div className="grid gap-6">
-                <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-[#351343] p-6 text-white shadow-[0_30px_100px_-48px_rgba(44,14,55,0.95)]">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,210,120,0.18),transparent_18%),radial-gradient(circle_at_left,rgba(255,255,255,0.08),transparent_25%)]" />
-                  <p className="relative z-10 text-xs font-semibold uppercase tracking-[0.34em] text-[#f4d486]">{copy.home.sliderTitle}</p>
-                  <div className="relative z-10 mt-4 overflow-hidden rounded-[1.7rem]">
-                    <AnimatePresence mode="wait">
+              <div className="order-1 grid min-w-0 gap-6 xl:order-2">
+                <div className="-mx-4 overflow-hidden bg-transparent p-0 text-white shadow-none sm:mx-0 sm:rounded-[2rem] sm:border sm:border-white/60 sm:bg-[#351343] sm:p-6 sm:shadow-[0_30px_100px_-48px_rgba(44,14,55,0.95)]">
+                  <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_top_right,rgba(244,210,120,0.18),transparent_18%),radial-gradient(circle_at_left,rgba(255,255,255,0.08),transparent_25%)] sm:block" />
+                  <div
+                    className="relative z-10 w-full min-w-0 overflow-hidden sm:rounded-[1.7rem]"
+                    onTouchStart={handleSliderTouchStart}
+                    onTouchEnd={handleSliderTouchEnd}
+                  >
+                    <AnimatePresence initial={false} custom={slideDirection} mode="wait">
                       <motion.div
+                        custom={slideDirection}
                         key={currentSlide.id}
-                        initial={{ opacity: 0, scale: 1.03 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.985 }}
-                        transition={{ duration: 0.45, ease: 'easeOut' }}
-                        className="relative"
+                        variants={slideVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="relative will-change-transform"
                       >
-                        {currentSlide.type === 'video' ? (
-                          <iframe
-                            className="h-[340px] w-full object-cover"
-                            src={currentSlide.embedUrl}
-                            title={currentSlide.name}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          />
-                        ) : (
-                          <img src={currentSlide.image} alt={currentSlide.name} className="h-[340px] w-full object-cover" />
-                        )}
+                        <div ref={sliderMediaRef} className="relative aspect-[4/3] min-h-[22rem] w-full overflow-hidden bg-[#220c2c] sm:min-h-0">
+                          {currentSlide.type === 'video' ? (
+                            <iframe
+                              className="absolute inset-0 h-full w-full border-0"
+                              src={getAutoplayEmbedUrl(currentSlide.embedUrl)}
+                              title={currentSlide.name}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                              allowFullScreen
+                            />
+                          ) : (
+                            <img src={currentSlide.image} alt={currentSlide.name} className="h-full w-full object-cover" />
+                          )}
+                        </div>
                       </motion.div>
                     </AnimatePresence>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1f0c28]/75 via-transparent to-transparent pointer-events-none" />
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={`${currentSlide.id}-content`}
-                        initial={{ opacity: 0, y: 18 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 12 }}
-                        transition={{ duration: 0.35, ease: 'easeOut' }}
-                        className="absolute bottom-0 left-0 right-0 p-6"
+                    {currentSlide.type === 'video' ? (
+                      <div className="absolute left-4 top-4 z-30 flex gap-2">
+                        <button
+                          type="button"
+                          aria-label={videoSoundEnabled ? 'Mute video' : 'Unmute video'}
+                          onClick={() => setVideoSoundEnabled((current) => !current)}
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-[#1f0c28]/60 text-white shadow-[0_18px_40px_-24px_rgba(0,0,0,0.85)] backdrop-blur hover:bg-[#1f0c28]/78"
+                        >
+                          {videoSoundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+                        </button>
+                        <button
+                          type="button"
+                          aria-label="Open fullscreen"
+                          onClick={handleFullscreen}
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-[#1f0c28]/60 text-white shadow-[0_18px_40px_-24px_rgba(0,0,0,0.85)] backdrop-blur hover:bg-[#1f0c28]/78"
+                        >
+                          <Maximize className="h-4 w-4" />
+                        </button>
+                      </div>
+                    ) : null}
+                    <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-3">
+                      <button
+                        type="button"
+                        aria-label="Previous slide"
+                        onClick={goToPrevSlide}
+                        className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-[#1f0c28]/55 text-white shadow-[0_18px_40px_-24px_rgba(0,0,0,0.85)] backdrop-blur hover:bg-[#1f0c28]/78"
                       >
-                        <div className="text-xs font-semibold uppercase tracking-[0.32em] text-[#f4d486]">{currentSlide.accent}</div>
-                        <h2 className="mt-2 font-serif text-3xl">{currentSlide.name}</h2>
-                        <p className="mt-3 max-w-md text-sm leading-7 text-white/80">{getLocalizedValue(currentSlide.caption, language)}</p>
-                      </motion.div>
-                    </AnimatePresence>
+                        <ChevronLeft className="h-5 w-5" />
+                      </button>
+                    </div>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 z-20 flex items-center pr-3">
+                      <button
+                        type="button"
+                        aria-label="Next slide"
+                        onClick={goToNextSlide}
+                        className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-[#1f0c28]/55 text-white shadow-[0_18px_40px_-24px_rgba(0,0,0,0.85)] backdrop-blur hover:bg-[#1f0c28]/78"
+                      >
+                        <ChevronRight className="h-5 w-5" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="relative z-10 mt-5 flex gap-3 overflow-x-auto pb-2">
+                  <div className="relative z-10 mt-4 flex justify-center gap-2 px-4 sm:px-0">
                     {homepageSlides.map((slide, index) => (
-                      <button key={slide.id} type="button" onClick={() => setActiveSlide(index)} className={`overflow-hidden rounded-[1.2rem] border transition ${activeSlide === index ? 'border-[#f4d486] ring-2 ring-[#f4d486]/60' : 'border-white/12'}`}>
-                        <div className="relative h-20 w-24 shrink-0">
+                      <button
+                        key={`${slide.id}-dot`}
+                        type="button"
+                        aria-label={`Go to slide ${index + 1}`}
+                        onClick={() => goToSlide(index)}
+                        className={`h-2.5 rounded-full transition-all ${activeSlide === index ? 'w-8 bg-[#f4d486]' : 'w-2.5 bg-white/35'}`}
+                      />
+                    ))}
+                  </div>
+                  <div className="relative z-10 mt-4 hidden gap-2 overflow-x-auto pb-2 sm:mt-5 sm:flex sm:gap-3">
+                    {homepageSlides.map((slide, index) => (
+                      <button key={slide.id} type="button" onClick={() => goToSlide(index)} className={`overflow-hidden rounded-[1rem] border transition ${activeSlide === index ? 'border-[#f4d486] ring-2 ring-[#f4d486]/60' : 'border-white/12'}`}>
+                        <div className="relative h-16 w-20 shrink-0 sm:h-20 sm:w-24">
                           <img src={slide.poster ?? slide.image} alt={slide.name} className="h-full w-full object-cover" />
                           {slide.type === 'video' ? (
                             <div className="absolute inset-0 flex items-center justify-center bg-[#1f0c28]/30 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">
@@ -218,11 +365,11 @@ const HomePage = () => {
             <div className="container mx-auto">
               <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                 <SectionIntro eyebrow={copy.common.brandsLabel} title={copy.home.featuredTitle} text={copy.home.featuredText} />
-                <Link to="/products">
-                  <Button variant="outline" className="rounded-full border-[#d4a454] px-6 py-5 text-sm font-semibold uppercase tracking-[0.18em] text-[#7a2c8e] hover:bg-[#fff4db]">
+                <Button asChild variant="outline" className="rounded-full border-[#d4a454] px-6 py-5 text-sm font-semibold uppercase tracking-[0.18em] text-[#7a2c8e] hover:bg-[#fff4db]">
+                  <Link to="/products">
                     {copy.common.exploreProducts}
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
               <div className="mt-14 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
                 {featuredProducts.map((product) => (
