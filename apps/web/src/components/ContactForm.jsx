@@ -7,6 +7,8 @@ import { Textarea } from '@/components/ui/textarea';
 import pb from '@/lib/pocketbaseClient';
 import { useLanguage } from '@/context/LanguageContext';
 
+const CONTACT_EMAIL = 'info@sheikhcosmetics.com';
+
 const ContactForm = () => {
   const { copy } = useLanguage();
   const [loading, setLoading] = useState(false);
@@ -22,16 +24,32 @@ const ContactForm = () => {
     setFormData((previous) => ({ ...previous, [event.target.name]: event.target.value }));
   };
 
+  const openFallbackEmail = () => {
+    const subject = formData.subject || 'Contact Inquiry';
+    const body = [
+      `Name: ${formData.name || '-'}`,
+      `Email: ${formData.email || '-'}`,
+      `Phone: ${formData.phone || '-'}`,
+      '',
+      'Message:',
+      formData.message || '-',
+    ].join('\n');
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
     try {
       await pb.collection('contacts').create(formData, { $autoCancel: false });
-      toast.success('Message sent successfully.');
+      toast.success('Form submitted successfully. We will contact you shortly.');
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast.error('Failed to send message. Please try again.');
+      const errorMessage = error?.response?.message || error?.message || 'Please try again.';
+      toast.error(`Failed to submit form. ${errorMessage}`);
+      openFallbackEmail();
     } finally {
       setLoading(false);
     }

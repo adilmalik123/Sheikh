@@ -6,6 +6,15 @@ onMailerSend((e) => {
     }
 
     const senderAddress = $os.getenv("BUILDER_MAILER_SENDER_ADDRESS");
+    const apiUrl = $os.getenv("BUILDER_MAILER_API_URL");
+    const apiKey = $os.getenv("BUILDER_MAILER_API_KEY");
+
+    if (!senderAddress || !apiUrl || !apiKey) {
+        throw new ApiError(
+            500,
+            "Mailer is not configured. Enable SMTP in PocketBase settings or set BUILDER_MAILER_SENDER_ADDRESS, BUILDER_MAILER_API_URL, and BUILDER_MAILER_API_KEY."
+        );
+    }
 
     const payload = {
         "subject": e.message.subject,
@@ -23,10 +32,10 @@ onMailerSend((e) => {
     }
 
     const response = $http.send({
-        url: `${$os.getenv("BUILDER_MAILER_API_URL")}/api/v2/email`,
+        url: `${apiUrl}/api/v2/email`,
         method: "POST",
         headers: {
-            "Authorization": `Bearer ${$os.getenv("BUILDER_MAILER_API_KEY")}`,
+            "Authorization": `Bearer ${apiKey}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)

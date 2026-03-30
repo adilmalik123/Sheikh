@@ -112,6 +112,34 @@ Typical example:
 VITE_API_URL=https://api.yourdomain.com
 ```
 
+## 4.1 Email Delivery (Important)
+
+If form data is saving but email is not arriving at `info@sheikhcosmetics.com`, configure PocketBase mailer:
+
+### Option A (Recommended): PocketBase SMTP
+
+In PocketBase Admin -> Settings -> Mail settings:
+
+- Enable SMTP: `true`
+- SMTP Host: `smtp.hostinger.com`
+- SMTP Port: `465` (SSL) or `587` (TLS)
+- Username: `info@sheikhcosmetics.com`
+- Password: mailbox/app password from Hostinger Email
+- Sender Name: `Sheikh Cosmetics`
+- Sender Address: `info@sheikhcosmetics.com`
+
+When SMTP is enabled, hooks use PocketBase SMTP directly.
+
+### Option B: Builder Mailer API (if SMTP is disabled)
+
+Set all of these env vars on VPS before running PocketBase:
+
+- `BUILDER_MAILER_SENDER_ADDRESS`
+- `BUILDER_MAILER_API_URL`
+- `BUILDER_MAILER_API_KEY`
+
+If these are missing and SMTP is disabled, mail sending will fail by design.
+
 ## 5. After Deployment
 
 Frontend test:
@@ -134,4 +162,3 @@ This repository is already initialized and pushed:
 - Remote: `origin`
 - Branch: `main`
 - Repo: `https://github.com/adilmalik123/Sheikh.git`
-

@@ -7,6 +7,8 @@ import { Textarea } from '@/components/ui/textarea';
 import pb from '@/lib/pocketbaseClient';
 import { useLanguage } from '@/context/LanguageContext';
 
+const DISTRIBUTOR_CONTACT_EMAIL = 'info@sheikhcosmetics.com';
+
 const DistributorForm = () => {
   const { copy } = useLanguage();
   const [loading, setLoading] = useState(false);
@@ -23,16 +25,34 @@ const DistributorForm = () => {
     setFormData((previous) => ({ ...previous, [event.target.name]: event.target.value }));
   };
 
+  const openFallbackEmail = () => {
+    const subject = `Distributor Inquiry - ${formData.companyName || formData.fullName || 'New Request'}`;
+    const body = [
+      `Full Name: ${formData.fullName || '-'}`,
+      `Company Name: ${formData.companyName || '-'}`,
+      `Email: ${formData.email || '-'}`,
+      `Phone: ${formData.phone || '-'}`,
+      `City / Region: ${formData.city || '-'}`,
+      '',
+      'Additional Information:',
+      formData.message || '-',
+    ].join('\n');
+
+    window.location.href = `mailto:${DISTRIBUTOR_CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
     try {
       await pb.collection('distributors').create({ ...formData, status: 'new' }, { $autoCancel: false });
-      toast.success('Inquiry submitted successfully.');
+      toast.success('Inquiry submitted successfully. We will contact you shortly.');
       setFormData({ fullName: '', companyName: '', phone: '', email: '', city: '', message: '' });
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast.error('Failed to submit inquiry. Please try again.');
+      const errorMessage = error?.response?.message || error?.message || 'Please try again.';
+      toast.error(`Failed to submit inquiry. ${errorMessage}`);
+      openFallbackEmail();
     } finally {
       setLoading(false);
     }
