@@ -50,9 +50,28 @@ const DistributorForm = () => {
       setFormData({ fullName: '', companyName: '', phone: '', email: '', city: '', message: '' });
     } catch (error) {
       console.error('Error submitting form:', error);
-      const errorMessage = error?.response?.message || error?.message || 'Please try again.';
-      toast.error(`Failed to submit inquiry. ${errorMessage}`);
-      openFallbackEmail();
+      try {
+        await pb.collection('contacts').create(
+          {
+            name: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+            subject: `Distributor Inquiry - ${formData.companyName || 'No Company'}`,
+            message:
+              `Company: ${formData.companyName || '-'}\n` +
+              `City/Region: ${formData.city || '-'}\n\n` +
+              `${formData.message || '-'}`,
+          },
+          { $autoCancel: false }
+        );
+        toast.success('Inquiry submitted successfully. We will contact you shortly.');
+        setFormData({ fullName: '', companyName: '', phone: '', email: '', city: '', message: '' });
+      } catch (fallbackError) {
+        console.error('Fallback submit failed:', fallbackError);
+        const errorMessage = fallbackError?.response?.message || fallbackError?.message || 'Please try again.';
+        toast.error(`Failed to submit inquiry. ${errorMessage}`);
+        openFallbackEmail();
+      }
     } finally {
       setLoading(false);
     }

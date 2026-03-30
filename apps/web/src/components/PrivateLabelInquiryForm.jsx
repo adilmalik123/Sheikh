@@ -68,9 +68,39 @@ const PrivateLabelInquiryForm = () => {
       });
     } catch (error) {
       console.error('Error submitting form:', error);
-      const errorMessage = error?.response?.message || error?.message || 'Please try again.';
-      toast.error(`Failed to submit inquiry. ${errorMessage}`);
-      openFallbackEmail();
+      try {
+        await pb.collection('contacts').create(
+          {
+            name: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+            subject: `Private Label Inquiry - ${formData.companyName || 'No Company'}`,
+            message:
+              `Company: ${formData.companyName || '-'}\n` +
+              `Brand Name: ${formData.brandName || '-'}\n` +
+              `Product Type: ${formData.productType || '-'}\n` +
+              `Quantity: ${formData.quantityRequirements || '-'}\n\n` +
+              `${formData.message || '-'}`,
+          },
+          { $autoCancel: false }
+        );
+        toast.success('Inquiry submitted successfully.');
+        setFormData({
+          fullName: '',
+          companyName: '',
+          email: '',
+          phone: '',
+          brandName: '',
+          productType: '',
+          quantityRequirements: '',
+          message: '',
+        });
+      } catch (fallbackError) {
+        console.error('Fallback submit failed:', fallbackError);
+        const errorMessage = fallbackError?.response?.message || fallbackError?.message || 'Please try again.';
+        toast.error(`Failed to submit inquiry. ${errorMessage}`);
+        openFallbackEmail();
+      }
     } finally {
       setLoading(false);
     }
