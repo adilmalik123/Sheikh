@@ -5,7 +5,6 @@ import { ArrowLeft, ArrowRight, Globe2, PackageCheck } from 'lucide-react';
 import Footer from '@/components/Footer.jsx';
 import Header from '@/components/Header.jsx';
 import PageHero from '@/components/PageHero.jsx';
-import { AlmasLogo, ArmanLogo, BeautyloopLogo, HijabLogo, HusnETurkLogo, LibnaniLogo, ShaheenLogo, TaryakLogo } from '@/components/BrandMark.jsx';
 import ProductCard from '@/components/ProductCard.jsx';
 import SectionIntro from '@/components/SectionIntro.jsx';
 import { Button } from '@/components/ui/button.jsx';
@@ -24,60 +23,21 @@ const BrandDetailPage = () => {
   }
 
   const renderBrandHeader = () => {
-    const frameClass =
-      brand.name === 'Beautyloop'
-        ? 'border-[#f1dfbf] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(255,249,239,0.92))] shadow-[0_32px_90px_-52px_rgba(212,164,84,0.85)]'
-        : brand.name === 'Arman'
-          ? 'border-[#ecd7c5] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(255,247,239,0.92))] shadow-[0_32px_90px_-52px_rgba(173,102,71,0.65)]'
-          : brand.name === 'Husn-e-Turk'
-            ? 'border-[#e6cfc9] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(251,243,241,0.94))] shadow-[0_32px_90px_-52px_rgba(142,41,41,0.42)]'
-          : brand.name === 'Hijab'
-            ? 'border-[#e5d8dd] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(252,246,249,0.94))] shadow-[0_32px_90px_-52px_rgba(137,86,112,0.35)]'
-          : brand.name === 'Almas'
-            ? 'border-[#dcd6d2] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(248,244,241,0.94))] shadow-[0_32px_90px_-52px_rgba(90,72,62,0.28)]'
-          : brand.name === 'Taryak'
-            ? 'border-[#ead8d0] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(252,245,241,0.94))] shadow-[0_32px_90px_-52px_rgba(150,92,64,0.36)]'
-          : brand.name === 'Shaheen'
-            ? 'border-[#dfe3e8] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(245,247,249,0.92))] shadow-[0_32px_90px_-52px_rgba(110,117,126,0.55)]'
-          : brand.name === 'Libnani'
-            ? 'border-[#eadcc8] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(251,246,239,0.92))] shadow-[0_32px_90px_-52px_rgba(159,116,64,0.34)]'
-            : 'border-[#f0dde6] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(255,247,251,0.92))] shadow-[0_32px_90px_-52px_rgba(122,44,142,0.35)]';
-
-    const logoNode =
-      brand.name === 'Beautyloop' ? (
-        <BeautyloopLogo />
-      ) : brand.name === 'Arman' ? (
-        <ArmanLogo />
-      ) : brand.name === 'Husn-e-Turk' ? (
-        <HusnETurkLogo />
-      ) : brand.name === 'Hijab' ? (
-        <HijabLogo />
-      ) : brand.name === 'Almas' ? (
-        <AlmasLogo />
-      ) : brand.name === 'Taryak' ? (
-        <TaryakLogo />
-      ) : brand.name === 'Shaheen' ? (
-        <ShaheenLogo />
-      ) : brand.name === 'Libnani' ? (
-        <LibnaniLogo />
-      ) : (
-        <div className={`flex h-24 w-24 items-center justify-center rounded-[1.6rem] border border-white/70 bg-gradient-to-br ${brand.palette} shadow-[0_20px_45px_-28px_rgba(107,44,145,0.85)]`}>
-          <span className="font-serif text-3xl font-semibold uppercase tracking-[0.2em] text-[#351343]">
-            {brand.logoLetters}
-          </span>
-        </div>
-      );
-
     return (
-      <div className={`rounded-[2rem] border p-6 ${frameClass}`}>
-        <div className="flex flex-col items-center gap-5 text-center md:flex-row md:items-center md:justify-between md:text-left">
-          <div className="flex min-w-0 flex-1 items-center justify-center md:justify-start">
-            {logoNode}
-          </div>
-          <div className="flex min-w-0 flex-1 justify-center md:justify-end">
-            <h2 className="font-serif text-4xl leading-none text-[#2f1538] md:text-5xl">
-              {brand.name}
-            </h2>
+      <div className="py-4 md:py-6">
+        <div className="mx-auto flex w-full max-w-fit flex-nowrap items-center justify-center gap-6 md:gap-12">
+          <img
+            src="/sheikh-cosmetics-logo.avif"
+            alt="Sheikh Cosmetics logo"
+            className="h-32 w-auto object-contain md:h-44"
+          />
+          <div className="flex min-w-0 flex-col items-center justify-center text-center">
+            <span className="block whitespace-nowrap font-serif text-5xl font-semibold uppercase leading-none tracking-[0.08em] text-[#351343] md:text-7xl md:tracking-[0.12em]">
+              SHEIKH
+            </span>
+            <span className="mt-3 block whitespace-nowrap text-center text-lg font-semibold uppercase leading-none tracking-[0.26em] text-[#8f3b82] md:text-3xl md:tracking-[0.34em]">
+              COSMETICS
+            </span>
           </div>
         </div>
       </div>
@@ -96,11 +56,23 @@ const BrandDetailPage = () => {
       <div className="min-h-screen bg-[linear-gradient(180deg,#fff8fa_0%,#fffefb_100%)]">
         <Header />
         <main className="flex-1">
+          <section className="bg-[linear-gradient(180deg,rgba(255,255,255,0.35),rgba(255,247,251,0.85))] px-4 pb-20 pt-40 sm:px-6 sm:pt-44 lg:px-8">
+            <div className="container mx-auto">
+              <p className="text-center text-xs font-semibold uppercase tracking-[0.28em] text-[#9e2b86]">{brand.name}</p>
+              <div className="mt-8 grid gap-7 md:grid-cols-2 xl:grid-cols-5">
+                {products.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+          </section>
+
           <PageHero
             eyebrow={`${catalogText.brandPageEyebrow} / Sheikh Brothers`}
             title={brand.name}
             subtitle={getLocalizedField(brand.statement, language)}
             image={brand.heroImage}
+            className="py-20 sm:py-24"
           />
 
           <section className="px-4 py-16 sm:px-6 lg:px-8">
@@ -143,22 +115,6 @@ const BrandDetailPage = () => {
                     {catalogText.backToBrands}
                   </Link>
                 </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="bg-[linear-gradient(180deg,rgba(255,255,255,0.35),rgba(255,247,251,0.85))] px-4 py-20 sm:px-6 lg:px-8">
-            <div className="container mx-auto">
-              <SectionIntro
-                eyebrow={brand.name}
-                title={catalogText.productGridTitle}
-                text={catalogText.productGridText}
-                align="center"
-              />
-              <div className="mt-12 grid gap-7 md:grid-cols-2 xl:grid-cols-5">
-                {products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
               </div>
             </div>
           </section>

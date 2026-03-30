@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:wght@500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,7 +13,7 @@ body,
 }
 
 body {
-  font-family: "Manrope", sans-serif;
+  font-family: "Outfit", sans-serif;
   overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(244, 190, 213, 0.18), transparent 22%),
@@ -50,7 +50,29 @@ button {
 }
 
 h1, h2, h3, h4, h5, h6, .font-serif {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Bodoni Moda", serif;
+}
+
+html[data-language="en"] body,
+html[lang="en"] body {
+  font-family: "Outfit", sans-serif;
+}
+
+html[data-language="en"] h1,
+html[data-language="en"] h2,
+html[data-language="en"] h3,
+html[data-language="en"] h4,
+html[data-language="en"] h5,
+html[data-language="en"] h6,
+html[data-language="en"] .font-serif,
+html[lang="en"] h1,
+html[lang="en"] h2,
+html[lang="en"] h3,
+html[lang="en"] h4,
+html[lang="en"] h5,
+html[lang="en"] h6,
+html[lang="en"] .font-serif {
+  font-family: "Bodoni Moda", serif;
 }
 
 html {

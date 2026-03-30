@@ -18,7 +18,7 @@ const ContactPage = () => {
       <div className="min-h-screen bg-[linear-gradient(180deg,#fff8fa_0%,#fffefb_100%)]">
         <Header />
         <main className="flex-1">
-          <PageHero eyebrow="Contact Sheikh Cosmetics" title={copy.contactPage.title} subtitle={copy.contactPage.subtitle} image="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80" />
+          <PageHero eyebrow="Contact Sheikh Cosmetics" title={copy.contactPage.title} subtitle={copy.contactPage.subtitle} image="/premium-beauty-partnership.avif" />
           <div className="container mx-auto px-4 py-20 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
               <div className="space-y-8 lg:col-span-1">
@@ -46,7 +46,11 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="mb-1 text-lg font-bold">{copy.lists.contactDetails.emailLabel}</h3>
-                    <p className="text-muted-foreground">{copy.lists.contactDetails.email}</p>
+                    <p className="text-muted-foreground">
+                      <a href="mailto:info@sheikhcosmetics.com" className="underline decoration-[#d4a454] underline-offset-4 hover:opacity-80">
+                        info@sheikhcosmetics.com
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>

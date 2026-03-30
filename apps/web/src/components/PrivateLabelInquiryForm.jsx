@@ -8,6 +8,8 @@ import { Textarea } from '@/components/ui/textarea';
 import pb from '@/lib/pocketbaseClient';
 import { useLanguage } from '@/context/LanguageContext';
 
+const PRIVATE_LABEL_CONTACT_EMAIL = 'info@sheikhcosmetics.com';
+
 const PrivateLabelInquiryForm = () => {
   const { copy } = useLanguage();
   const [loading, setLoading] = useState(false);
@@ -30,6 +32,24 @@ const PrivateLabelInquiryForm = () => {
     setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
+  const openFallbackEmail = () => {
+    const subject = `Private Label Inquiry - ${formData.companyName || formData.fullName || 'New Request'}`;
+    const body = [
+      `Full Name: ${formData.fullName || '-'}`,
+      `Company Name: ${formData.companyName || '-'}`,
+      `Email: ${formData.email || '-'}`,
+      `Phone: ${formData.phone || '-'}`,
+      `Desired Brand Name: ${formData.brandName || '-'}`,
+      `Product Type: ${formData.productType || '-'}`,
+      `Quantity Requirements: ${formData.quantityRequirements || '-'}`,
+      '',
+      'Additional Details:',
+      formData.message || '-',
+    ].join('\n');
+
+    window.location.href = `mailto:${PRIVATE_LABEL_CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -48,7 +68,9 @@ const PrivateLabelInquiryForm = () => {
       });
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast.error('Failed to submit inquiry. Please try again.');
+      const errorMessage = error?.response?.message || error?.message || 'Please try again.';
+      toast.error(`Failed to submit inquiry. ${errorMessage}`);
+      openFallbackEmail();
     } finally {
       setLoading(false);
     }
@@ -59,6 +81,12 @@ const PrivateLabelInquiryForm = () => {
       <div className="mb-8 text-center">
         <h3 className="mb-2 font-serif text-3xl text-[#2f1538]">{copy.common.startProject}</h3>
         <p className="text-sm text-muted-foreground">Fill out the form below to discuss your private label requirements.</p>
+        <p className="mt-2 text-sm text-[#7a2c8e]">
+          Email:{' '}
+          <a href={`mailto:${PRIVATE_LABEL_CONTACT_EMAIL}`} className="font-semibold underline decoration-[#d4a454] underline-offset-4 hover:opacity-80">
+            {PRIVATE_LABEL_CONTACT_EMAIL}
+          </a>
+        </p>
       </div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="space-y-2">

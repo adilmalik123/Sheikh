@@ -18,7 +18,7 @@ const DistributorsPage = () => {
       <div className="min-h-screen bg-[linear-gradient(180deg,#fff8fa_0%,#fffefb_100%)]">
         <Header />
         <main className="flex-1">
-          <PageHero eyebrow={copy.common.globalSupply} title={copy.distributorsPage.title} subtitle={copy.distributorsPage.subtitle} image="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1200&q=80" />
+          <PageHero eyebrow={copy.common.globalSupply} title={copy.distributorsPage.title} subtitle={copy.distributorsPage.subtitle} image="/global-distribution-bulk-supply-v2.avif" />
 
           <div className="container mx-auto px-4 py-24 sm:px-6 lg:px-8">
             <div className="grid gap-16 lg:grid-cols-2">

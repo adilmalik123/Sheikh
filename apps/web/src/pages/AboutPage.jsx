@@ -25,7 +25,7 @@ const AboutPage = () => {
       <div className="min-h-screen bg-[linear-gradient(180deg,#fff8fa_0%,#fffefb_100%)]">
         <Header />
         <main className="flex-1">
-          <PageHero eyebrow="Sheikh Cosmetics / Sheikh Brothers" title={copy.about.title} subtitle={copy.about.subtitle} image="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80" />
+          <PageHero eyebrow="Sheikh Cosmetics / Sheikh Brothers" title={copy.about.title} subtitle={copy.about.subtitle} image="/about-shiekh-cosmetics.avif" />
 
           <section className="px-4 py-24 sm:px-6 lg:px-8">
             <div className="container mx-auto grid gap-8 xl:grid-cols-[1fr_0.95fr]">
@@ -39,7 +39,7 @@ const AboutPage = () => {
               </div>
 
               <div className="overflow-hidden rounded-[2rem]">
-                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=1200&q=80" alt="Premium cosmetics production" className="h-full min-h-[420px] w-full object-cover" />
+                <img src="/about/sheikh-cosmetics-about-sheikh-brothers.avif" alt="Sheikh Brothers cosmetics overview" className="h-full min-h-[420px] w-full object-cover" />
               </div>
             </div>
           </section>

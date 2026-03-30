@@ -150,7 +150,7 @@ const HomePage = () => {
         <Header />
         <main className="flex-1">
           <section className="relative overflow-hidden px-4 pb-14 pt-36 sm:px-6 lg:px-8">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,190,213,0.36),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(111,44,145,0.18),transparent_18%),linear-gradient(145deg,#fff8fb_0%,#fff2f8_40%,#fff9f2_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,190,213,0.36),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(111,44,145,0.18),transparent_18%),linear-gradient(145deg,#fff8fb_0%,#fff2f8_40%,#fff9f2_100%)]" />
             <div className="container relative mx-auto grid gap-8 xl:grid-cols-[1.08fr_0.92fr]">
               <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }} className="order-2 rounded-[2rem] border border-white/65 bg-white/70 p-8 shadow-[0_30px_100px_-48px_rgba(107,44,145,0.8)] backdrop-blur xl:order-1 xl:p-12">
                 <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#f1d7e6] bg-[#fff7fb] px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#9e2b86]">
@@ -162,16 +162,18 @@ const HomePage = () => {
                 </h1>
                 <p className="mt-7 max-w-2xl text-lg leading-8 text-[#654a68]">{copy.home.subtitle}</p>
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <Button asChild className="rounded-full bg-gradient-to-r from-[#b22e85] via-[#813091] to-[#42205f] px-7 py-6 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_22px_44px_-20px_rgba(178,46,133,0.7)] hover:brightness-110">
-                    <Link to="/products">
-                      {copy.common.exploreProducts}
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" className="rounded-full border-[#d4a454] px-7 py-6 text-sm font-semibold uppercase tracking-[0.18em] text-[#7a2c8e] hover:bg-[#fff4db]">
-                    <Link to="/private-label">
-                      {copy.common.privateLabel}
-                    </Link>
-                  </Button>
+                  <a
+                    href="/products"
+                    className="relative z-20 inline-flex min-h-9 items-center justify-center rounded-full bg-gradient-to-r from-[#b22e85] via-[#813091] to-[#42205f] px-7 py-6 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_22px_44px_-20px_rgba(178,46,133,0.7)] transition-colors hover:brightness-110"
+                  >
+                    {copy.common.exploreProducts}
+                  </a>
+                  <Link
+                    to="/private-label"
+                    className="inline-flex min-h-9 items-center justify-center rounded-full border border-[#d4a454] bg-background px-7 py-6 text-sm font-semibold uppercase tracking-[0.18em] text-[#7a2c8e] shadow-sm transition-colors hover:bg-[#fff4db]"
+                  >
+                    {copy.common.privateLabel}
+                  </Link>
                 </div>
                 <div className="mt-10 grid gap-4 md:grid-cols-3">
                   {catalogText.portfolioMetrics.map((metric) => (
@@ -184,10 +186,10 @@ const HomePage = () => {
               </motion.div>
 
               <div className="order-1 grid min-w-0 gap-6 xl:order-2">
-                <div className="-mx-4 overflow-hidden bg-transparent p-0 text-white shadow-none sm:mx-0 sm:rounded-[2rem] sm:border sm:border-white/60 sm:bg-[#351343] sm:p-6 sm:shadow-[0_30px_100px_-48px_rgba(44,14,55,0.95)]">
-                  <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_top_right,rgba(244,210,120,0.18),transparent_18%),radial-gradient(circle_at_left,rgba(255,255,255,0.08),transparent_25%)] sm:block" />
+                <div className="mx-0 overflow-hidden bg-transparent p-0 text-white shadow-none sm:mx-0 sm:rounded-[2rem] sm:bg-[#351343] sm:shadow-[0_30px_100px_-48px_rgba(44,14,55,0.95)]">
+                  <div className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_top_right,rgba(244,210,120,0.18),transparent_18%),radial-gradient(circle_at_left,rgba(255,255,255,0.08),transparent_25%)] sm:block" />
                   <div
-                    className="relative z-10 w-full min-w-0 overflow-hidden sm:rounded-[1.7rem]"
+                    className="relative z-10 w-full min-w-0 overflow-hidden"
                     onTouchStart={handleSliderTouchStart}
                     onTouchEnd={handleSliderTouchEnd}
                   >
@@ -200,9 +202,9 @@ const HomePage = () => {
                         animate="center"
                         exit="exit"
                         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="relative will-change-transform"
+                        className="relative w-full will-change-transform"
                       >
-                        <div ref={sliderMediaRef} className="relative aspect-[4/3] min-h-[22rem] w-full overflow-hidden bg-[#220c2c] sm:min-h-0">
+                        <div ref={sliderMediaRef} className="relative aspect-[4/3] w-full overflow-hidden bg-[#220c2c]">
                           {currentSlide.type === 'video' ? (
                             <iframe
                               className="absolute inset-0 h-full w-full border-0"
@@ -212,7 +214,7 @@ const HomePage = () => {
                               allowFullScreen
                             />
                           ) : (
-                            <img src={currentSlide.image} alt={currentSlide.name} className="h-full w-full object-cover" />
+                            <img src={currentSlide.image} alt={currentSlide.name} className="h-full w-full object-cover object-center" />
                           )}
                         </div>
                       </motion.div>
@@ -237,7 +239,7 @@ const HomePage = () => {
                         </button>
                       </div>
                     ) : null}
-                    <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-3">
+                    <div className="pointer-events-none absolute inset-y-0 left-2 z-20 flex items-center sm:left-0 sm:pl-3">
                       <button
                         type="button"
                         aria-label="Previous slide"
@@ -247,7 +249,7 @@ const HomePage = () => {
                         <ChevronLeft className="h-5 w-5" />
                       </button>
                     </div>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 z-20 flex items-center pr-3">
+                    <div className="pointer-events-none absolute inset-y-0 right-2 z-20 flex items-center sm:right-0 sm:pr-3">
                       <button
                         type="button"
                         aria-label="Next slide"
@@ -258,7 +260,7 @@ const HomePage = () => {
                       </button>
                     </div>
                   </div>
-                  <div className="relative z-10 mt-4 flex justify-center gap-2 px-4 sm:px-0">
+                  <div className="relative z-10 mt-4 flex justify-center gap-2 px-0 sm:px-0">
                     {homepageSlides.map((slide, index) => (
                       <button
                         key={`${slide.id}-dot`}
@@ -308,7 +310,11 @@ const HomePage = () => {
           <section className="overflow-hidden border-y border-[#f0dde6] bg-white/55 py-4 backdrop-blur">
               <div className="marquee-track flex gap-12 whitespace-nowrap text-sm font-semibold uppercase tracking-[0.34em] text-[#8f3b82]">
                 {[...brandProfiles, ...brandProfiles].map((brand, index) => (
-                  <div key={`${brand.slug}-${index}`} className="flex items-center gap-3">
+                  <Link
+                    key={`${brand.slug}-${index}`}
+                    to={`/brands/${brand.slug}`}
+                    className="flex items-center gap-3 transition-opacity hover:opacity-75"
+                  >
                     {brand.name === 'Beautyloop' ? (
                       <BeautyloopLogo compact />
                     ) : brand.name === 'Arman' ? (
@@ -331,31 +337,34 @@ const HomePage = () => {
                         <span>{brand.name}</span>
                       </>
                     )}
-                  </div>
+                  </Link>
                 ))}
               </div>
           </section>
 
-          <section className="px-4 py-24 sm:px-6 lg:px-8">
-            <div className="container mx-auto">
+          <section className="overflow-x-hidden px-4 py-24 sm:px-6 lg:px-8">
+            <div className="mx-auto w-full max-w-7xl">
               <SectionIntro eyebrow={copy.home.sections.brandShowcase} title={copy.brands.title} text={copy.brands.subtitle} align="center" />
               <p className="mx-auto mt-5 max-w-3xl text-center text-sm leading-7 text-[#654a68]">
                 {catalogText.selectedBrandsSubtitle}
               </p>
-              <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              <div className="mx-auto mt-14 grid w-full gap-6 md:grid-cols-2 xl:grid-cols-4">
                 {catalogBrands.map((brand) => (
-                  <article key={brand.slug} className="luxury-card overflow-hidden">
-                    <div className={`h-2 bg-gradient-to-r ${brand.palette}`} />
-                    <img src={brand.heroImage} alt={brand.name} className="h-56 w-full object-cover" />
-                    <div className="p-6">
-                      <BrandMark brand={brand} size="sm" />
-                      <p className="mt-4 text-sm leading-7 text-[#654a68]">{getLocalizedValue(brand.statement, language)}</p>
-                      <Link to={`/brands/${brand.slug}`} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#9e2b86]">
-                        {catalogText.discoverBrand}
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </div>
-                  </article>
+                  <Link key={brand.slug} to={`/brands/${brand.slug}`} className="group block w-full">
+                    <article className="luxury-card mx-auto w-full overflow-hidden transition duration-300 group-hover:-translate-y-1">
+                      <div className={`h-2 bg-gradient-to-r ${brand.palette}`} />
+                      <img src={brand.heroImage} alt={brand.name} className="h-56 w-full object-cover" />
+                      <div className="p-6 text-center md:text-left">
+                        <BrandMark brand={brand} size="sm" />
+                        <div className="mt-5 flex justify-center md:justify-start">
+                          <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#9e2b86]">
+                            {catalogText.discoverBrand}
+                            <ArrowRight className="h-4 w-4" />
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -383,7 +392,7 @@ const HomePage = () => {
             <div className="container mx-auto">
               <div className="grid gap-8 xl:grid-cols-[0.95fr_1.05fr]">
                 <div className="overflow-hidden rounded-[2rem]">
-                  <img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?auto=format&fit=crop&w=1200&q=80" alt="Sheikh Cosmetics premium beauty presentation" className="h-full min-h-[420px] w-full object-cover" />
+                  <img src="/home-about-manufacturers.avif" alt="Sheikh Cosmetics premium beauty presentation" className="h-full min-h-[420px] w-full object-cover" />
                 </div>
                 <div className="rounded-[2rem] bg-[#31143d] p-8 text-white shadow-[0_36px_90px_-46px_rgba(49,20,61,1)] xl:p-12">
                   <SectionIntro eyebrow={copy.home.aboutTitle} title={copy.home.aboutTitle} text={copy.home.aboutText} light />
@@ -407,8 +416,17 @@ const HomePage = () => {
             <div className="container mx-auto">
               <SectionIntro eyebrow={copy.home.benefitsTitle} title={copy.home.benefitsTitle} text={copy.home.benefitsText} align="center" />
               <div className="mt-14 grid gap-6 lg:grid-cols-3">
-                {expertiseCards.map((card) => (
-                  <div key={card.title} className="luxury-card p-8">
+                {expertiseCards.map((card, index) => (
+                  <div
+                    key={card.title}
+                    className={`luxury-card p-8 ${
+                      index === 0
+                        ? 'bg-[#fff9fc]'
+                        : index === 1
+                          ? 'bg-[#fffaf6]'
+                          : 'bg-[#f8f7ff]'
+                    }`}
+                  >
                     <div className="inline-flex rounded-full bg-[#fff0f7] p-4 text-[#9e2b86]">
                       <card.icon className="h-6 w-6" />
                     </div>
@@ -431,7 +449,7 @@ const HomePage = () => {
             <div className="container mx-auto">
               <div className="grid gap-8 overflow-hidden rounded-[2.3rem] bg-gradient-to-r from-[#331440] via-[#4c1c5a] to-[#8d2f83] p-8 text-white shadow-[0_40px_120px_-52px_rgba(51,20,64,1)] xl:grid-cols-[0.95fr_1.05fr] xl:p-12">
                 <div className="overflow-hidden rounded-[1.8rem]">
-                  <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=1200&q=80" alt="Private label cosmetics" className="h-full min-h-[360px] w-full object-cover" />
+                  <img src="/home-private-label-create-brand.avif" alt="Private label cosmetics" className="h-full min-h-[360px] w-full object-cover" />
                 </div>
                 <div>
                   <SectionIntro eyebrow={copy.common.privateLabel} title={copy.home.privateLabelTitle} text={copy.home.privateLabelText} light />
@@ -442,11 +460,11 @@ const HomePage = () => {
                       </div>
                     ))}
                   </div>
-                  <Link to="/private-label" className="mt-8 inline-flex">
-                    <Button className="rounded-full bg-[#f4d486] px-6 py-6 text-sm font-semibold uppercase tracking-[0.18em] text-[#3b184b] hover:bg-[#ffe7a9]">
+                  <Button asChild className="mt-8 rounded-full bg-[#f4d486] px-6 py-6 text-sm font-semibold uppercase tracking-[0.18em] text-[#3b184b] hover:bg-[#ffe7a9]">
+                    <Link to="/private-label">
                       {copy.common.startProject}
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -501,6 +519,9 @@ const HomePage = () => {
                         {video.category}
                       </div>
                       <h3 className="mt-4 font-serif text-2xl text-[#2f1538]">{getLocalizedValue(video.title, language)}</h3>
+                      <a href={video.linkUrl ?? video.embedUrl} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center text-sm font-semibold uppercase tracking-[0.2em] text-[#9e2b86] transition-opacity hover:opacity-80">
+                        {copy.common.watchVideos}
+                      </a>
                     </div>
                   </div>
                 ))}

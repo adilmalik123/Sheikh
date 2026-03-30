@@ -345,20 +345,47 @@ export function getBrandBySlug(slug) {
 }
 
 export function getBrandProducts(brand, language) {
-  return productTemplates.map((template) => ({
-    id: `${brand.slug}-${template.key}`,
-    brand: brand.name,
-    brandSlug: brand.slug,
-    type: getLocalizedField(template.type, language),
-    name: `${brand.name} ${getLocalizedField(template.type, language)}`,
-    description: getLocalizedField(template.description, language),
-    benefits: getLocalizedField(template.benefits, language),
-    image: template.image,
-    accent: brand.palette,
-    logoLetters: brand.logoLetters,
-  }));
+  return productTemplates.map((template) => {
+    const image =
+      brand.slug === 'beautyloop' && template.key === 'whitening-beauty-soap'
+        ? '/products/beautyloop-whitening-beauty-soap.avif'
+      : brand.slug === 'beautyloop' && template.key === 'whitening-beauty-cream'
+        ? '/products/beautyloop-whitening-beauty-cream-carton.avif'
+        : brand.slug === 'husn-e-turk' && template.key === 'whitening-beauty-cream'
+          ? '/products/husn-e-turk-whitening-beauty-cream-carton.png'
+          : brand.slug === 'arman' && template.key === 'whitening-beauty-cream'
+            ? '/products/arman-whitening-beauty-cream-carton.avif'
+              : brand.slug === 'hijab' && template.key === 'whitening-beauty-cream'
+                ? '/products/hijab-whitening-beauty-cream-carton.avif'
+              : brand.slug === 'libnani' && template.key === 'whitening-beauty-cream'
+                ? '/products/libnani-whitening-beauty-cream-carton.avif'
+              : brand.slug === 'almas' && template.key === 'whitening-beauty-cream'
+                ? '/products/almas-whitening-beauty-cream-carton.avif'
+              : brand.slug === 'taryak' && template.key === 'whitening-beauty-cream'
+                ? '/products/taryak-whitening-beauty-cream-carton.avif'
+              : brand.slug === 'shaheen' && template.key === 'whitening-beauty-cream'
+                ? '/products/shaheen-whitening-beauty-cream-carton.avif'
+        : template.image;
+
+    return {
+      id: `${brand.slug}-${template.key}`,
+      brand: brand.name,
+      brandSlug: brand.slug,
+      type: getLocalizedField(template.type, language),
+      name: `${brand.name} ${getLocalizedField(template.type, language)}`,
+      description: getLocalizedField(template.description, language),
+      benefits: getLocalizedField(template.benefits, language),
+      image,
+      accent: brand.palette,
+      logoLetters: brand.logoLetters,
+    };
+  });
 }
 
 export function getCatalogProducts(language) {
   return catalogBrands.flatMap((brand) => getBrandProducts(brand, language));
+}
+
+export function getProductById(productId, language) {
+  return getCatalogProducts(language).find((product) => product.id === productId);
 }

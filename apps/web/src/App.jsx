@@ -8,6 +8,7 @@ import AboutPage from '@/pages/AboutPage.jsx';
 import BrandsPage from '@/pages/BrandsPage.jsx';
 import BrandDetailPage from '@/pages/BrandDetailPage.jsx';
 import ProductsPage from '@/pages/ProductsPage.jsx';
+import ProductDetailPage from '@/pages/ProductDetailPage.jsx';
 import DistributorsPage from '@/pages/DistributorsPage.jsx';
 import ContactPage from '@/pages/ContactPage.jsx';
 import VideosPage from '@/pages/VideosPage.jsx';
@@ -33,6 +34,7 @@ function App() {
         <Route path="/brands" element={<BrandsPage />} />
         <Route path="/brands/:slug" element={<BrandDetailPage />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products/:productId" element={<ProductDetailPage />} />
         <Route path="/videos" element={<VideosPage />} />
         <Route path="/private-label" element={<PrivateLabelPage />} />
         <Route path="/distributors" element={<DistributorsPage />} />

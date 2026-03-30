@@ -61,8 +61,8 @@ export const brandProfiles = [
     slug: 'husn-e-turk',
     name: 'Husn-e-Turk',
     palette: 'from-[#f5c7da] via-[#fff0f6] to-[#f5d7b8]',
-    heroImage: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80',
-    productImage: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80',
+    heroImage: '/brands/husn-e-turk-brand.avif',
+    productImage: '/brands/husn-e-turk-brand.avif',
     soapImage: 'https://images.unsplash.com/photo-1607006483225-6bb186de8de1?auto=format&fit=crop&w=900&q=80',
     statement: {
       en: 'Ottoman-inspired elegance for luminous bridal beauty.',
@@ -75,8 +75,8 @@ export const brandProfiles = [
     slug: 'beautyloop',
     name: 'Beautyloop',
     palette: 'from-[#f6d5f0] via-[#fef3ff] to-[#cdb4ff]',
-    heroImage: 'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=1200&q=80',
-    productImage: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80',
+    heroImage: '/brands/beautyloop-whitening-cream.avif',
+    productImage: '/brands/beautyloop-whitening-cream.avif',
     soapImage: 'https://images.unsplash.com/photo-1631730359585-38a4935cbec4?auto=format&fit=crop&w=900&q=80',
     statement: {
       en: 'Fresh, playful radiance for trend-led skincare shelves.',
@@ -89,7 +89,7 @@ export const brandProfiles = [
     slug: 'arman',
     name: 'Arman',
     palette: 'from-[#f8d49d] via-[#fff7ea] to-[#efd6c7]',
-    heroImage: 'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/brands/arman-brand.avif',
     productImage: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80',
     soapImage: 'https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&fit=crop&w=900&q=80',
     statement: {
@@ -103,7 +103,7 @@ export const brandProfiles = [
     slug: 'hijab',
     name: 'Hijab',
     palette: 'from-[#d6c2ff] via-[#f8f4ff] to-[#f7d6ea]',
-    heroImage: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/brands/hijab-brand.avif',
     productImage: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=80',
     soapImage: 'https://images.unsplash.com/photo-1612810806695-30f7a8258391?auto=format&fit=crop&w=900&q=80',
     statement: {
@@ -117,7 +117,7 @@ export const brandProfiles = [
     slug: 'taryak',
     name: 'Taryak',
     palette: 'from-[#d7b0ff] via-[#f7edff] to-[#f4d8b5]',
-    heroImage: 'https://images.unsplash.com/photo-1580870069867-74c57ee1bb07?auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/brands/taryak-brand.avif',
     productImage: 'https://images.unsplash.com/photo-1570194065650-d99fb4d8a7f1?auto=format&fit=crop&w=900&q=80',
     soapImage: 'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=900&q=80',
     statement: {
@@ -131,8 +131,8 @@ export const brandProfiles = [
     slug: 'shaheen',
     name: 'Shaheen',
     palette: 'from-[#f0caa7] via-[#fff7f1] to-[#f9d8df]',
-    heroImage: 'https://images.unsplash.com/photo-1629196914168-7f6f1c6a4ea3?auto=format&fit=crop&w=1200&q=80',
-    productImage: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80',
+    heroImage: '/brands/shaheen-brand.avif',
+    productImage: '/slider/shaheen-whitening-cream.avif',
     soapImage: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&w=900&q=80',
     statement: {
       en: 'Confident beauty essentials for ambitious global markets.',
@@ -145,8 +145,8 @@ export const brandProfiles = [
     slug: 'almas',
     name: 'Almas',
     palette: 'from-[#f9d6c2] via-[#fff6f3] to-[#e6d3ff]',
-    heroImage: 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=1200&q=80',
-    productImage: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=900&q=80',
+    heroImage: '/brands/almas-brand.avif',
+    productImage: '/slider/almas-whitening-beauty-cream.avif',
     soapImage: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80',
     statement: {
       en: 'Gentle sophistication with glow-first skincare appeal.',
@@ -159,7 +159,7 @@ export const brandProfiles = [
     slug: 'libnani',
     name: 'Libnani',
     palette: 'from-[#f1d2a8] via-[#fff8ef] to-[#e8d6ff]',
-    heroImage: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/brands/libnani-brand.avif',
     productImage: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=900&q=80',
     soapImage: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80',
     statement: {
@@ -212,8 +212,8 @@ export const homepageSlides = [
     id: `${brand.slug}-showcase-slide`,
     type: 'image',
     name: brand.name,
-    image: index === 0 ? '/slider/hijab-whitening-beauty-cream.avif' : index === 1 ? '/slider/arman-hand-foot-cream.avif' : index === 2 ? '/slider/shaheen-whitening-cream.avif' : index === 3 ? '/slider/taryak-whitening-beauty-cream.avif' : index === 4 ? '/slider/libnani-cream-soap.avif' : index === 5 ? '/slider/husn-e-turk-whitening-beauty-soap.avif' : index === 6 ? '/slider/almas-whitening-beauty-cream.avif' : index === 7 ? '/slider/beautyloop-whitening-beauty-cream-2.avif' : brand.heroImage,
-    poster: index === 0 ? '/slider/hijab-whitening-beauty-cream.avif' : index === 1 ? '/slider/arman-hand-foot-cream.avif' : index === 2 ? '/slider/shaheen-whitening-cream.avif' : index === 3 ? '/slider/taryak-whitening-beauty-cream.avif' : index === 4 ? '/slider/libnani-cream-soap.avif' : index === 5 ? '/slider/husn-e-turk-whitening-beauty-soap.avif' : index === 6 ? '/slider/almas-whitening-beauty-cream.avif' : index === 7 ? '/slider/beautyloop-whitening-beauty-cream-2.avif' : brand.heroImage,
+    image: index === 0 ? '/slider/slider-0.avif' : index === 1 ? '/slider/arman-hand-foot-cream.avif' : index === 2 ? '/slider/shaheen-whitening-cream.avif' : index === 3 ? '/slider/taryak-whitening-beauty-cream.avif' : index === 4 ? '/slider/slider-5.avif' : index === 5 ? '/slider/husn-e-turk-whitening-beauty-soap.avif' : index === 6 ? '/slider/slider-9.avif' : index === 7 ? '/slider/beautyloop-whitening-beauty-cream-2.avif' : brand.heroImage,
+    poster: index === 0 ? '/slider/slider-0.avif' : index === 1 ? '/slider/arman-hand-foot-cream.avif' : index === 2 ? '/slider/shaheen-whitening-cream.avif' : index === 3 ? '/slider/taryak-whitening-beauty-cream.avif' : index === 4 ? '/slider/slider-5.avif' : index === 5 ? '/slider/husn-e-turk-whitening-beauty-soap.avif' : index === 6 ? '/slider/slider-9.avif' : index === 7 ? '/slider/beautyloop-whitening-beauty-cream-2.avif' : brand.heroImage,
     accent: ['Rose Pink', 'Gold Finish', 'Deep Purple', 'Soft Nude', 'Glow Ritual', 'Premium Care', 'Beauty Export'][index] ?? 'Beauty Collection',
     caption: brand.statement,
   })),
@@ -248,6 +248,18 @@ export const homepageSlides = [
 ];
 
 export const videos = [
+  {
+    id: 'video-facebook-1',
+    title: {
+      en: 'Sheikh Cosmetics Facebook Video Highlight',
+      ur: 'Sheikh Cosmetics Facebook Video Highlight',
+      ar: 'Sheikh Cosmetics Facebook Video Highlight',
+      fa: 'Sheikh Cosmetics Facebook Video Highlight',
+    },
+    category: 'Brand Promotion',
+    embedUrl: 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D508667025918443&show_text=false&width=1280',
+    linkUrl: 'https://www.facebook.com/watch/?v=508667025918443',
+  },
   { id: 'video-1', title: { en: 'Luxury Whitening Cream Showcase', ur: 'لکژری وائٹننگ کریم شوکیس', ar: 'عرض كريم التفتيح الفاخر', fa: 'نمایش کرم روشن کننده لوکس' }, category: 'Product Showcase', embedUrl: 'https://www.youtube-nocookie.com/embed/1nD4BLx8JXo' },
   { id: 'video-2', title: { en: 'Cosmetic Filling and Packaging Process', ur: 'کاسمیٹک فلنگ اور پیکجنگ پراسیس', ar: 'عملية التعبئة والتغليف لمستحضرات التجميل', fa: 'فرآیند پر کردن و بسته بندی محصولات آرایشی' }, category: 'Manufacturing', embedUrl: 'https://www.youtube-nocookie.com/embed/tgbNymZ7vqY' },
   { id: 'video-3', title: { en: 'Brand Promotion Visual Story', ur: 'برانڈ پروموشن ویژول اسٹوری', ar: 'قصة بصرية لترويج العلامة', fa: 'داستان تصویری تبلیغ برند' }, category: 'Brand Promotion', embedUrl: 'https://www.youtube-nocookie.com/embed/ysz5S6PUM-U' },
@@ -311,7 +323,7 @@ export const siteCopy = {
       ingredients: ['Skin-comfort textures', 'Glow-focused beauty actives', 'Refined fragrance direction', 'Retail-ready premium presentation'],
       privateLabelServices: ['Brand name creation', 'Logo design', 'Product design', 'Cream formulation', 'Packaging design', 'Printing', 'Filling', 'Bulk manufacturing', 'Worldwide delivery'],
       partnerReasons: ['High-end beauty positioning for distributors', 'Private label support from concept to shipment', 'Global wholesale and export partnerships'],
-      contactDetails: { addressLabel: 'Address', address: 'Sheikh Brothers Industrial Estate, Lahore, Pakistan', phoneLabel: 'Phone', phone: '+92 305 960 8328', emailLabel: 'Email', email: 'info@sheikhcosmetics.com' },
+      contactDetails: { addressLabel: 'Address', address: 'Sheikh Brothers Industrial Estate, Lahore, Pakistan', phoneLabel: 'Phone', phone: '+923059608328', emailLabel: 'Email', email: 'info@sheikhcosmetics.com' },
     },
   },
   ur: { direction: 'rtl', nav: { home: 'ہوم', about: 'تعارف', brands: 'برانڈز', products: 'پروڈکٹس', videos: 'ویڈیوز', privateLabel: 'پرائیویٹ لیبل', distributors: 'ڈسٹری بیوٹرز', contact: 'رابطہ' }, header: { topbar: 'دنیا بھر کے ڈسٹری بیوٹرز، ہول سیل پارٹنرز اور پرائیویٹ لیبل بیوٹی برانڈز کے لئے وائٹننگ کریم اور صابن مینوفیکچرنگ۔', cta: 'اپنا برانڈ بنائیں' }, common: { viewMore: 'مزید دیکھیں', exploreProducts: 'پروڈکٹس دیکھیں', becomeDistributor: 'ڈسٹری بیوٹر بنیں', contactUs: 'رابطہ کریں', privateLabel: 'پرائیویٹ لیبل مینوفیکچرنگ', startProject: 'اپنا پراجیکٹ شروع کریں', globalSupply: 'عالمی سپلائی', watchVideos: 'ویڈیوز دیکھیں', brandsLabel: 'سگنیچر برانڈ پورٹ فولیو', seoTitle: seoMeta.title, seoDescription: seoMeta.description, seoKeywords: seoMeta.keywords, metrics: [{ value: '100+', label: 'بیوٹی برانڈز' }, { value: '500+', label: 'پروڈکٹس' }, { value: '40+', label: 'عالمی مارکیٹس' }] }, home: { badge: 'شیخ برادرز پریمیم بیوٹی مینوفیکچرنگ', title: 'جدید عالمی بیوٹی برانڈز کے لئے لکژری وائٹننگ کریمز اور صابن۔', subtitle: 'شیخ کاسمیٹکس ڈسٹری بیوٹرز، پرائیویٹ لیبل پارٹنرز اور جدید بیوٹی کاروباروں کے لئے خوبصورت اور طاقتور سکن کیئر کلیکشن تیار کرتا ہے۔', sliderTitle: 'برانڈ اور پروڈکٹ اسپاٹ لائٹ', sliderText: 'ایک JSON پاورڈ شوکیس جو ہمارے برانڈز کے موڈ، پروڈکٹ دنیا اور لکژری شناخت کو نمایاں کرتا ہے۔', featuredTitle: 'نمایاں وائٹننگ کریمز اور وائٹننگ صابن', featuredText: 'ہر برانڈ میں وائٹننگ کریم اور وائٹننگ صابن شامل ہے۔ کریم کے ساتھ استعمال ہونے پر وائٹننگ صابن تیز تر خوبصورتی کے نتائج دیتا ہے۔', aboutTitle: 'شیخ کاسمیٹکس کے بارے میں', aboutText: 'شیخ کاسمیٹکس، شیخ برادرز کی مینوفیکچرنگ طاقت، جدید بیوٹی پوزیشننگ اور ایکسپورٹ کے لئے تیار پریزنٹیشن کو یکجا کرتا ہے۔', benefitsTitle: 'شیخ کاسمیٹکس کیوں منتخب کریں', benefitsText: 'پریمیم اجزاء، مضبوط مینوفیکچرنگ اور ڈسٹری بیوٹرز کے لئے برانڈ فرسٹ نقطہ نظر۔', privateLabelTitle: 'اپنا بیوٹی برانڈ بنائیں', privateLabelText: 'برانڈ نام، لوگو، کریم فارمولیشن، فلنگ، پیکجنگ، پرنٹنگ اور دنیا بھر میں ڈیلیوری تک ہم مکمل سروس فراہم کرتے ہیں۔', distributorTitle: 'بلک سپلائی اور عالمی ڈسٹری بیوشن', distributorText: 'ہم ہول سیل پارٹنرشپ، ایکسپورٹ پروگرامز اور بڑے پیمانے کی سپلائی منصوبہ بندی میں مدد کرتے ہیں۔', videoTitle: 'ویڈیو ہائی لائٹس', videoText: 'پروڈکٹ کہانیاں، مینوفیکچرنگ ویژولز اور ہائی اینڈ بیوٹی پریزنٹیشن دیکھیں۔', ctaTitle: 'شیخ برادرز کے ساتھ اپنی اگلی بیوٹی کامیابی تیار کریں۔', ctaText: 'پرائیویٹ لیبل وائٹننگ کریمز، ڈسٹری بیوٹر پارٹنرشپ اور عالمی بلک آرڈرز کے لئے ہماری ٹیم سے بات کریں۔', sections: { brandShowcase: 'برانڈ شوکیس', expertise: 'ہماری مینوفیکچرنگ مہارت', ingredients: 'پریمیم اجزاء', skincare: 'سکن کیئر فوائد', partner: 'ہمارے ساتھ پارٹنر بنیں' } }, about: { title: 'ایک لکژری بیوٹی مینوفیکچرر جس کی بنیاد شیخ برادرز ہیں۔', subtitle: 'ہم رنگین، جدید اور ایکسپورٹ کے لئے تیار وائٹننگ کریم اور صابن برانڈز بناتے ہیں جو مارکیٹ میں ممتاز نظر آئیں۔' }, brands: { title: 'منتخب نمایاں برانڈز، جبکہ اصل پورٹ فولیو اس سے کہیں زیادہ وسیع ہے۔', subtitle: 'ہر برانڈ پیج پر صرف چند نمائشی پروڈکٹس دکھائی گئی ہیں، مکمل کیٹلاگ ویب سائٹ پر شامل نہیں۔' }, products: { title: 'وائٹننگ کریم اور صابن کلیکشن', subtitle: 'شیخ کاسمیٹکس کی مکمل پریمیم پورٹ فولیو دیکھیں۔', allBrands: 'تمام برانڈز', allTypes: 'تمام اقسام', search: 'پروڈکٹس یا فوائد تلاش کریں', empty: 'کوئی پروڈکٹ نہیں ملی۔' }, videosPage: { title: 'شیخ کاسمیٹکس ویڈیو گیلری', subtitle: 'پروڈکٹ شوکیس، مینوفیکچرنگ ویڈیوز، برانڈ پروموشنز اور بیوٹی ہائی لائٹس۔' }, privateLabelPage: { title: 'شیخ کاسمیٹکس کی پرائیویٹ لیبل کاسمیٹک مینوفیکچرنگ', subtitle: 'شیخ برادرز کلائنٹس کو ابتدا سے انتہا تک مکمل وائٹننگ کریم اور وائٹننگ صابن برانڈ بنانے میں مدد دیتے ہیں۔', promise: 'اپنے نام، اپنی پیکجنگ اور اپنی شناخت کے ساتھ اپنی وائٹننگ کریم برانڈ لانچ کریں۔' }, distributorsPage: { title: 'عالمی ڈسٹری بیوشن اور بلک سپلائی', subtitle: 'ہول سیل پروگرامز، گلوبل شپنگ اور طویل مدتی مارکیٹ گروتھ کے لئے شیخ کاسمیٹکس کے ساتھ پارٹنر بنیں۔' }, contactPage: { title: 'آئیں ایک پریمیم بیوٹی پارٹنرشپ شروع کریں۔', subtitle: 'پرائیویٹ لیبل مینوفیکچرنگ، ڈسٹری بیوٹر انکوائری اور عالمی سپلائی پلاننگ کے لئے ہم سے رابطہ کریں۔' }, lists: { benefits: ['پریمیم پوزیشننگ', 'لکژری پیکجنگ', 'اسکیل ایبل مینوفیکچرنگ', 'ایکسپورٹ تیاری'], expertise: ['کریم فارمولیشن', 'خودکار فلنگ', 'پیکجنگ ڈیزائن', 'بلک پروڈکشن'], ingredients: ['نرم ٹیکسچر', 'گلو ایکٹو اجزاء', 'نفیس خوشبو', 'پریمیم پریزنٹیشن'], privateLabelServices: ['برانڈ نام', 'لوگو ڈیزائن', 'پروڈکٹ ڈیزائن', 'کریم فارمولیشن', 'پیکجنگ ڈیزائن', 'پرنٹنگ', 'فلنگ', 'بلک مینوفیکچرنگ', 'دنیا بھر میں ڈیلیوری'], partnerReasons: ['ہائی اینڈ برانڈ پوزیشننگ', 'کانسپٹ سے شپمنٹ تک سپورٹ', 'عالمی ہول سیل پارٹنرشپ'], contactDetails: { addressLabel: 'پتہ', address: 'شیخ برادرز انڈسٹریل اسٹیٹ، لاہور، پاکستان', phoneLabel: 'فون', phone: '+۹۲ ۳۰۵ ۹۶۰ ۸۳۲۸', emailLabel: 'ای میل', email: 'info@sheikhcosmetics.com' } } },

@@ -70,7 +70,9 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-[#f4d486]" />
-                <span>{copy.lists.contactDetails.email}</span>
+                <a href="mailto:info@sheikhcosmetics.com" className="transition hover:text-white">
+                  info@sheikhcosmetics.com
+                </a>
               </li>
             </ul>
             <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/12 bg-[rgba(255,255,255,0.07)] px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/70">
